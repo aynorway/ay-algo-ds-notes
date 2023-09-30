@@ -1,4 +1,3 @@
-
 public class BinarySearch {
     // Params: a数组，int target 目标值
     // returns: 目标索引，没找到返回-1
