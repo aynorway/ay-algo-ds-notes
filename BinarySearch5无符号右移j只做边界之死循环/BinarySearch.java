@@ -3,13 +3,17 @@ public class BinarySearch {
     // returns: 目标索引，没找到返回-1
 
     public static int binarySearchBasic(int[] a, int target) {
-        int i = 0, j = a.length - 1;  // 现在设定两个指针 // 变一行 // 在范围内有结果 // j 只做边界, 就一定不是查找目标
-        
-        while (i < j) { 
-            int m = (i + j) >>> 1; // 找一个中间的位置 
-            // unsigned right shift operator (0+7)>>>1 = 3 
+        int i = 0, j = a.length; // 现在设定两个指针 // 变一行 // 在范围内有结果 // j 只做边界, 就一定不是查找目标 
+        // (左闭右开)
+
+        while (i < j) {
+
+            // 如果这里为 <= 则会出现 死循环 i=m, i+1=j, i=m=j, i<=j,j=m, i<=j, j=m 死循环
+
+            int m = (i + j) >>> 1; // 找一个中间的位置
+            // unsigned right shift operator (0+7)>>>1 = 3
             if (target < a[m]) { // 如果目标在左边
-                j = m ;
+                j = m;
             } else if (a[m] < target) { // 如果目标在右边
                 i = m + 1;
             } else {
