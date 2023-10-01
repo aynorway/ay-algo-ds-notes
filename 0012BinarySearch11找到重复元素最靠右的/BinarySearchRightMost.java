@@ -51,7 +51,7 @@ public class BinarySearchRightMost {
 // target < a[m], j=m
 // a[m] < target, i=m 
 // a[m] = target, find the target, a[m], candidate = m, i is the most left index number. 
-// we to make i bigger, i -> m + 1, unitl a[m] is not = target, i cannot be bigger, then end the loop. and we get i. 
+// we to make i bigger, i -> m + 1, unitl a[m] is not = target, i cannot be bigger, then end the loop. and we get i. (we are controlling the scope) 
 
 // if not find, the candidate = -1 
 
