@@ -15,10 +15,15 @@ public class BinarySearchLeftMost {
 
             }
         }
-        return i; // 修改返回i, 含义: candidate 不要了.
+        return i; 
+        
+        // 修改返回i, 含义: candidate 不要了.
+
         // 为什么返回i更有用?
         // 找到 target, i 是最左的
         // 没找到 target, i 是大于等于目标的, 最靠左的位置
+
+        // 注意, 这个i是在括号外面返回的. 
 
     }
 }
