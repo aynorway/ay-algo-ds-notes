@@ -18,6 +18,7 @@ class Solution {
         return (a[i] == target) ? i : -1 ; // 一个值的时候, 三元运算符 // 条件? 结果1 : 结果2 
 
     }
+}
 
 
 // i m j 
