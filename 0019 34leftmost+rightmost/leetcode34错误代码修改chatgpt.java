@@ -50,5 +50,18 @@ class Solution {
     }
 }
 
-// 1 2 3 4 5 6 7 
+// 1 1 1 1 1 4 5 6 7 
+// 比如说找2 
+// a[m] < target right zone , so increase i 
+// i = m + 1 
+// 此时如果求最小i，缩小j
+// 条件：另a[m]=target,(全是相同的target)
+// 此时i都是小于j的 
+// j依靠m缩小 
+// 此时求出来了一个最小的j
+
+
+
+
+
 
