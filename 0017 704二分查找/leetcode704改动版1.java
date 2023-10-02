@@ -3,13 +3,13 @@
 
 class Solution {
     public int search(int[] a, int target) {
-        int i = 0, j = a.length - 1;
+        int i = 0, j = a.length; // j 不参与比较 // 前闭后开 // 1
 
-        while (i <= j) { 
+        while (i < j) { // 不能等于了 // 3 
             int m = (i+j) >>> 1;
             
             if (target < a[m]) {
-                j = m-1;
+                j = m; // m不参与比较, m - 1 还没比较过 // 2 
             } else if (a[m] < target) {
                 i = m+1;
             } else {

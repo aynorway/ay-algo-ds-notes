@@ -16,7 +16,7 @@ public class BinarySearchRightMost {
             }
         }
         return i - 1; // <= target, 最靠右的索引 
-        // 其实就是return 的 j
+        // 其实就是return 的 j = (i - 1)
 
     }
 }

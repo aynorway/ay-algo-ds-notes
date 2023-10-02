@@ -15,12 +15,18 @@ public class BinarySearchLeftMost {
 
             }
         }
-        return i; // 修改返回i, 含义: candidate 不要了. 
-        // 为什么返回i更有用? 
+        return i; // 修改返回i, 含义: candidate 不要了.
+        // 为什么返回i更有用?
         // 找到 target, i 是最左的
-        // 没找到 target, i 是大于等于目标的, 最靠左的位置 
-
-
+        // 没找到 target, i 是大于等于目标的, 最靠左的位置
 
     }
 }
+
+// if (target < a[m]) {
+// j = m - 1;
+// } else if (a[m] < target ) {
+// i = m + 1;
+// } else { // a[m]== target 1 1 2 4 4 4 5 5
+// j = m - 1;
+// }

@@ -3,23 +3,22 @@
 
 class Solution {
     public int search(int[] a, int target) {
-        int i = 0, j = a.length - 1;
+        int i = 0, j = a.length; 
 
-        while (i <= j) { 
+        while (i + 1 < j) { //平衡版 
+            //中间索引 
             int m = (i+j) >>> 1;
             
-            if (target < a[m]) {
-                j = m-1;
-            } else if (a[m] < target) {
-                i = m+1;
-            } else {
-                return m;
-            }
+            if (target < a[m]) { // 左边
+                j = m; 
+            } else { 
+                i = m ; // m还没测 
+            } 
         }
-        return -1;
+        return (a[i] == target) ? i : -1 ; // 一个值的时候, 三元运算符 // 条件? 结果1 : 结果2 
 
     }
-}
+
 
 // i m j 
 // when i=j may also be m, so shouldn't jump out the loop. 
