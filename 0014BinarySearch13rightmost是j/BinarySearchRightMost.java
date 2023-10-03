@@ -15,7 +15,7 @@ public class BinarySearchRightMost {
                 i = m + 1;
             }
         }
-        return i - 1; // <= target, 最靠右的索引 
+        return j; // <= target, 最靠右的索引 
         // 其实就是return 的 j = (i - 1)
         // 注意, 这个i-1 也是循环外面返回的. 
 
