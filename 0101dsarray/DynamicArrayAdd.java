@@ -12,10 +12,10 @@ public class DynamicArrayAdd {
     }
 
     public void add(int index, int element) {
-        if(index >= 0 && index <= size)
-        System.arraycopy(array, index, array, index + 1, size - index);
-        // 从原始数组, 起始位置, 到新数组, 起始位置, 拷贝几位 
-        array[index] = element; 
+        if (index >= 0 && index <= size)
+            System.arraycopy(array, index, array, index + 1, size - index);
+        // 从原始数组, 起始位置, 到新数组, 起始位置, 拷贝几位
+        array[index] = element;
         size++;
     }
 
