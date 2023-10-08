@@ -24,7 +24,7 @@ public class DynamicArrayAdd {
     //     }
     // }
 
-    // 合并后 
+    // 合并后 变成一个了, 没原始的直观, 但是可以用, 等于约分了. 
 
     public void add(int index, int element) {
         if (index >= 0 && index <= size) { // 考虑边界
