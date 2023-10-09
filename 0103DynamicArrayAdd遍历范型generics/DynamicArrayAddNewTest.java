@@ -2,9 +2,11 @@ public class DynamicArrayAddNewTest {
 
     public static void main(String[] args) {
 
-        getDynamicArrayAddNew1();
+        // getDynamicArrayAddNew1();
+        // System.out.println("----------");
+        // getDynamicArrayAddNew2();
         System.out.println("----------");
-        getDynamicArrayAddNew2();
+        getDynamicArrayAddNew3();
 
     }
 
@@ -40,6 +42,20 @@ public class DynamicArrayAddNewTest {
         for (int i = 0; i < 5; i++) {
             System.out.println(dynamicArrayAddNew.get(i));
         }
+    }
+
+    private static void getDynamicArrayAddNew3() {
+        DynamicArrayAddNew dynamicArrayAddNew = new DynamicArrayAddNew();
+        dynamicArrayAddNew.addLast(1);
+        dynamicArrayAddNew.addLast(2);
+        dynamicArrayAddNew.addLast(3);
+        dynamicArrayAddNew.addLast(4);
+
+        // 把打印的活, 交给consumer来做. 具体做什么事, 由调用者来决定, 比如说还是打印.
+
+        dynamicArrayAddNew.forEach((element)-> {
+            System.out.println(element);
+        });
     }
 
 }
