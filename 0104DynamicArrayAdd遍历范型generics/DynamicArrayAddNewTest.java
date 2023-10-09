@@ -53,8 +53,9 @@ public class DynamicArrayAddNewTest {
 
         // 把打印的活, 交给consumer来做. 具体做什么事, 由调用者来决定, 比如说还是打印.
 
-        dynamicArrayAddNew.forEach((element)-> {
+        dynamicArrayAddNew.forEach2((element)-> {
             System.out.println(element);
+            // 再用什么在这里随便改, 不需要去改forEach 了. 
         });
     }
 
