@@ -7,12 +7,10 @@ public class DynamicArrayAddNew implements Iterable<Integer> { // 实现Iterable
 
     private int size = 0; // 逻辑大小
     private int capacity = 8; // 容量
-    private int[] array = {}; 
-    // 改进, 先设置空的数组. - 思想叫 懒惰初始化 思想, 不得不用的时候, 再搞个更大的数组来用. 
-    // 创建新数组, 默认全是0
+    private int[] array = {}; // 改进, 先设置空的数组.
 
     // 向最后位置[size] 添加 元素
-    // params: element - 待添加的元素 
+    // params: element - 待添加的元素
     public void addLast(int element) {
 
         add(size, element);
@@ -20,54 +18,65 @@ public class DynamicArrayAddNew implements Iterable<Integer> { // 实现Iterable
 
     // 向[0..size]位置 添加 元素
     // params: index - 索引位置
-    //         element - 待添加的元素 
+    // element - 待添加的元素
     public void add(int index, int element) {
-        checkAndGrow(); // 重构了, 先检查容量, 容量充足了, 再走下边的逻辑. 
-        
-        // 添加逻辑 
+        checkAndGrow(); // 重构了, 先检查容量, 容量充足了, 再走下边的逻辑.
+
+        // 添加逻辑
         if (index >= 0 && index <= size) { // 考虑边界
-            System.arraycopy(array, index, array, index + 1, size - index); 
+            System.arraycopy(array, index, array, index + 1, size - index);
         }
         array[index] = element;
         size++;
     }
+    ////////////////////// 插入涉及数据移动, 插入点后边的得移位, 所以是, O(n), 尾部是O(1), 就算加上扩容, 尾部也是O(1)
 
     private void checkAndGrow() {
-        // 扩容先判定 
-        // 先检查容量 
+        // 扩容先判定
+        // 先检查容量
         if (size == 0) {
-            array = new int[capacity]; // 从 0 扩到 8 
+            array = new int[capacity]; // 从 0 扩到 8
         }
-        // 如果不够, 从不够扩到够 
-        if (size == capacity) { // 如果size相等, 就扩容1.5 或 1.618, 或 2. 
-            // capacity = capacity + capacity >> 1; 
-            capacity += capacity >> 1; 
-            int [] newArray = new int[capacity]; 
-            System.arraycopy( array, 0, newArray, 0, size); // 把旧的[]放到新的[]
-            array = newArray; // 旧的不要了, 用新的盖上 
+        // 如果不够, 从不够扩到够
+        if (size == capacity) { // 如果size相等, 就扩容1.5 或 1.618, 或 2.
+            // capacity = capacity + capacity >> 1;
+            capacity += capacity >> 1;
+            int[] newArray = new int[capacity];
+            System.arraycopy(array, 0, newArray, 0, size); // 把旧的[]放到新的[]
+            array = newArray; // 旧的不要了, 用新的盖上
         }
     }
 
-    public int remove (int index) { // [0.. size)
-        int removed = array [index]; 
-        System.arraycopy(array, index + 1, array, index, size - index - 1); 
+    // 从[0..size)范围 删除 元素
+    // params: index - 索引位置
+    // returns: 被删除的元素
+    public int remove(int index) { // [0.. size)
+        int removed = array[index];
+        System.arraycopy(array, index + 1, array, index, size - index - 1);
         size--;
-        return removed; 
+        return removed;
 
     }
+    ////////////////////// 与插入相同 
 
+    // 查询元素
+    // [0..size)区间内
+    // params: index - 索引位置
+    // returns: 该索引位置的元素
     public int get(int index) {
         return array[index];
     }
 
     // 知道 类内部用了静态数组, 还知道 有效元素的大小 --》 就可以 写遍历 了 [卧槽?]
-
+    // 遍历方法1
+    // Params: consumer - 遍历要执行的操作, 入参:每个元素
     public void forEach1() {
         for (int i = 0; i < size; i++) {
             System.out.println(array[i]);
 
         }
     }
+    ////////////////////// 根据索引去查询, 是, O(1), 与数据规模无关了
 
     public void forEach2(Consumer<Integer> consumer) {
         for (int i = 0; i < size; i++) {
@@ -79,6 +88,7 @@ public class DynamicArrayAddNew implements Iterable<Integer> { // 实现Iterable
 
         }
     }
+    ////////////////////// 根据索引去查询, 是, O(1), 与数据规模无关了
 
     public Iterator<Integer> iterator() {
         // 异名内部类写法
