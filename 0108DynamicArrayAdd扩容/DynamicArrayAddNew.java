@@ -20,14 +20,17 @@ public class DynamicArrayAddNew implements Iterable<Integer> { // 实现Iterable
     // params: index - 索引位置
     //         element - 待添加的元素 
     public void add(int index, int element) {
+        
+        
+
+        // 添加逻辑 
         if (index >= 0 && index <= size) { // 考虑边界
-            System.arraycopy(array, index, array, index + 1, size - index);
+            System.arraycopy(array, index, array, index + 1, size - index); 
         }
         array[index] = element;
         size++;
     }
 
-    // 删除 
     public int remove (int index) { // [0.. size)
         int removed = array [index]; 
         System.arraycopy(array, index + 1, array, index, size - index - 1); 
