@@ -8,12 +8,10 @@ public class SinglyLinkedListTest {
         list.addFrist(3);
         list.addFrist(4);
 
-        list.loop1(value -> {
+        for (Integer value : list) {
             System.out.println(value);
-        });
-        list.loop2(value -> {
-            System.out.println(value);
-        });
+        }
+        // 迭代器这个, ......................
     }
 
 }
