@@ -3,10 +3,10 @@ public class SinglyLinkedListTest {
     public static void main(String[] args) {
         SinglyLinkedList list = new SinglyLinkedList();
 
-        list.addFrist(1);
-        list.addFrist(2);
-        list.addFrist(3);
-        list.addFrist(4);
+        list.addFirst(1);
+        list.addFirst(2);
+        list.addFirst(3);
+        list.addFirst(4);
 
         for (Integer value : list) {
             System.out.println(value);
