@@ -1,7 +1,6 @@
-import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class SinglyLinkedList implements Iterable<Integer> { // 整体
+public class SinglyLinkedList { // 整体
     private Node head = null; // 头 指针
 
     // 节点类
@@ -48,33 +47,14 @@ public class SinglyLinkedList implements Iterable<Integer> { // 整体
     }
 
     public void loop2(Consumer<Integer> consumer) {
-        for (Node p = head;p != null; p = p.next){
+        for (Node p = head; p != null; p = p.next) {
             consumer.accept(p.value);
         }
     }
-    // 都要求掌握 
 
+    // 都要求掌握
 
-    // 第三种 迭代器 范型 
-    @Override
-    public Iterator<Integer> iterator() {
-        return new Iterator<Integer>() {
-            Node p = head; 
-            @Override 
-            public boolean hasNext() {
-                return p!= null; 
-            }
-            @Override 
-            public Integer next() {
-                int v = p.value; 
-                p = p.next; 
-                return v; 
-            }
-        };
-
-    }
-
-    
+    // 第三种 迭代器 范型
 }
 
 // 概述
