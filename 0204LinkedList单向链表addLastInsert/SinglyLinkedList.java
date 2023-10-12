@@ -1,11 +1,38 @@
+import java.util.Iterator;
 import java.util.function.Consumer;
 
 // head --》 value p --》 value p --》 null
 // addFirst()
 
-public class SinglyLinkedList { // 整体
+public class SinglyLinkedList implements Iterable<Integer> { // 整体
 
     private Node head = null; // 头 指针
+
+    // 第三种 迭代器 范型
+    @Override
+    public Iterator<Integer> iterator() {
+        // 被称之 匿名内部类 转换成 带名字的 内部类 // 点击下面Iterator 重构 然后 convert anonymous to inner...
+        // 这样就转换一个内部类
+        // 重构前的版本见历史.java
+        return new NodeIterator(); // 然后就出现一个带名字的类
+
+    }
+
+    private final class NodeIterator implements Iterator<Integer> {
+        Node p = head; // 初始值 指向头节点
+
+        @Override
+        public boolean hasNext() { // 是否有下一个元素
+            return p != null;
+        }
+
+        @Override
+        public Integer next() { // 返回当前值, 并且指向下一个元素
+            int v = p.value; // 拿到当前值
+            p = p.next; // 指向下一个元素
+            return v;
+        }
+    }
 
     // 节点类
     // 内部类, 对外隐藏实现的细节, 对外暴漏越少越好
@@ -94,11 +121,11 @@ public class SinglyLinkedList { // 整体
     // GET 通过索引 获取节点的值
     // 链表中没有索引
     // 遍历过程中, 逐渐知道的索引位置
-    // 节点又没办法存储, 因为后边的索引需要跟着变, 维护成本太高了, 所以链表实现中从来不记录索引 
+    // 节点又没办法存储, 因为后边的索引需要跟着变, 维护成本太高了, 所以链表实现中从来不记录索引
 
-    // 遍历中计算出每个节点的索引 
+    // 遍历中计算出每个节点的索引
     public void testindex() {
-        int i = 0; // i 代表 索引, 初始值为0 
+        int i = 0; // i 代表 索引, 初始值为0
         // for 循环只能加一个变量
         // for 循环第三个部分 可以执行多条表达式
         for (Node p = head; p != null; p = p.next, i++) {
@@ -107,26 +134,55 @@ public class SinglyLinkedList { // 整体
         }
     }
 
-    // 抽取成单独的方法, 以后可以重用 
+    // 抽取成单独的方法, 以后可以重用
     private Node findNode(int index) {
         int i = 0;
         for (Node p = head; p != null; p = p.next, i++) {
             if (i == index) {
-                return p; 
+                return p;
             }
         }
         return null; // 没找到
     }
 
+    // 根据索引查找
+    // param: index - 索引
+    // returns 找到, 返回节点值
+    // 没找到, throws: IllegalArgument Exception
     public int get(int index) {
-        Node node = findNode(index); 
+        Node node = findNode(index);
         if (node == null) {
-            // 抛出异常 
-            throw new IllegalArgumentException(String.format("index [%d] 不合法%n", index));
+            // 抛出异常
+            throw illegalIndex(index);
         }
-        return node.value; 
+        return node.value;
     }
 
+    // 想索引位置插入
+    // head -》 value 指针p - 》 value 指针p - 》 value 指针p - 》 null
+    // 新节点指向原本元素, 前面的索引位置指向新节点
+
+    public void insert(int index, int value) {
+        // 头部插入节点 index = 0 , 走后面索引会出错
+        if (index == 0) {
+            addFirst(value);
+            return;
+        }
+
+        // 先找到前面的索引
+        Node prev = findNode(index - 1); // 找到上一个索引
+        // 找不到的话, 抛一个异常
+        if (prev == null) {
+            // 抛出异常
+            throw illegalIndex(index);
+        }
+        prev.next = new Node(value, prev.next); // 新节点
+
+    }
+
+    private IllegalArgumentException illegalIndex(int index) {
+        return new IllegalArgumentException(String.format("index [%d] 不合法%n", index));
+    }
 }
 
 // 概述
@@ -143,5 +199,3 @@ public class SinglyLinkedList { // 整体
 // 循环链表 tail 指向 head
 
 // 特殊节点, 哨兵节点 sentinel, 或哑元节点 dummy 不存储数据, 用作头尾, 简化边界判断
-
-//

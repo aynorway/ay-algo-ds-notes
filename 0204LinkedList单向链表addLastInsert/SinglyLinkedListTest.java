@@ -8,10 +8,16 @@ public class SinglyLinkedListTest {
         list.addLast(3);
         list.addLast(4);
 
-        list.testindex();
+        // list.testindex();
 
-        System.out.println(list.get(2)); 
-        System.out.println(list.get(10)); 
+        // System.out.println(list.get(2)); 
+        // System.out.println(list.get(10)); 
+
+        list.insert(2, 5);
+        for (Integer value : list) {
+            System.out.println(value);
+        }
+    
     }
 
 }
