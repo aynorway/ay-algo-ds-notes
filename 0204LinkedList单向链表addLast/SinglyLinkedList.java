@@ -105,4 +105,3 @@ public class SinglyLinkedList { // 整体
 
 // 特殊节点, 哨兵节点 sentinel, 或哑元节点 dummy 不存储数据, 用作头尾, 简化边界判断
 
-//
