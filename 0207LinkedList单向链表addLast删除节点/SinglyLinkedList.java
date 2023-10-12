@@ -158,7 +158,8 @@ public class SinglyLinkedList implements Iterable<Integer> { // 整体
         return node.value;
     }
 
-    // 想索引位置插入
+    // 向 索引位置插入
+    // params: index 和 value 
     // head -》 value 指针p - 》 value 指针p - 》 value 指针p - 》 null
     // 新节点指向原本元素, 前面的索引位置指向新节点
 
@@ -182,6 +183,14 @@ public class SinglyLinkedList implements Iterable<Integer> { // 整体
 
     private IllegalArgumentException illegalIndex(int index) {
         return new IllegalArgumentException(String.format("index [%d] 不合法%n", index));
+    }
+
+    public void removeFirst() {
+        if (head == null){
+
+            throw illegalIndex(0);
+        }
+        head = head.next; 
     }
 }
 
