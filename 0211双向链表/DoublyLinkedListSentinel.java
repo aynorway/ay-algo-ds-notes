@@ -39,6 +39,8 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
 
     }
 
+    
+
     public void instert(int index, int value) {
         Node prev = findNode(index - 1);
         if (prev == null) {
@@ -49,6 +51,21 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
         prev.next = inserted;
         next.prev = inserted;
 
+    }
+
+    public void remove (int index) {
+        Node prev = findNode (index -1); 
+        if (prev == null) {
+            throw illegalIndex(index);
+        }
+        Node removed = prev.next; 
+        if (removed == tail) {
+            throw illegalIndex(index);
+        }
+        Node next = removed.next;
+
+        prev.next = next; 
+        next.prev = prev; 
     }
 
     private IllegalArgumentException illegalIndex(int index) {
