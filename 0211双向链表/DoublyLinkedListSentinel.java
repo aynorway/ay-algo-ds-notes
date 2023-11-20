@@ -39,7 +39,16 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
 
     }
 
-    
+    public void addLast(int value){
+        Node last = tail.prev; 
+        Node added = new Node (last, value, tail);
+        last.next = added; 
+        tail.prev = added;
+    }
+
+    public void removeLast(){
+
+    }
 
     public void instert(int index, int value) {
         Node prev = findNode(index - 1);
