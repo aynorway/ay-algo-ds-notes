@@ -47,7 +47,16 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
     }
 
     public void removeLast(){
+        Node removed = tail.prev;
+        if (removed == head) {
+            throw illegalIndex(0);
+        }
+        Node prev = removed.prev;
+        prev.next = tail;
+        tail.prev = prev;
 
+        // 特殊情况 
+        // 没有元素的时候不能删除 
     }
 
     public void instert(int index, int value) {
