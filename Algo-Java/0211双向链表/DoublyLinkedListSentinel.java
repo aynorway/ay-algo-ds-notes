@@ -90,4 +90,19 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
         return new IllegalArgumentException(String.format("index [%d] 不合法%n", index));
     }
 
+    public Iterator<Iterator> iterator (){
+        return new Iterator<Integer> (){
+            Node p = head.next; 
+
+            public boolean hasNext(){
+                return p != tail; 
+            }
+
+            public Integer next (){
+                int value = p.value; 
+                p = p.next; 
+                return value;
+            }
+        };
+    }
 }
